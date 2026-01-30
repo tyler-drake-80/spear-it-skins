@@ -1,10 +1,6 @@
 # Spear-It-Skins  
 ### A CS:GO Skin Market Analytics & Price Intelligence Platform
 
-> **Alternative project titles (if needed):**
-> - GameSkin Insight  
-> - Digital Item Market Tracker  
-
 ---
 
 ## Overview
