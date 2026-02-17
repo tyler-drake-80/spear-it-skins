@@ -103,7 +103,7 @@ Examples of similar platforms include:
 - Express
 
 ### Database
-- MongoDB or PostgreSQL
+- PostgreSQL
 
 ### Hosting
 - Vercel / Render / Railway (TBD)
