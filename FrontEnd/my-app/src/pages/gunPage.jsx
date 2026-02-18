@@ -8,8 +8,9 @@ function GunPage() {
 
    return (
     <>
-      <h1>Page for Gun {itemId.toUpperCase()} </h1>
+      <h1>Page for {itemId.toUpperCase() } skins </h1>
       <h3>Category: {type} </h3>
+      <h3>fill in with skins of each respective gun </h3>
     </>
   );
 }

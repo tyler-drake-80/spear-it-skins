@@ -1,9 +1,8 @@
 import React from 'react';
 import './App.css';
 import NavBar from "./components/NavigationBar.jsx";
-import BasicButtonExample from './components/dropdown.jsx';
 import {Routes, Route} from "react-router-dom";
-import CategoryPage from "./pages/pistolsPage.jsx";
+import CategoryPage from "./pages/categoryPage.jsx";
 import HomePage    from "./pages/homePage.jsx";
 import GunPage from "./pages/gunPage.jsx";
 
@@ -24,4 +23,3 @@ function App() {
 
 export default App;
 
-//home page 

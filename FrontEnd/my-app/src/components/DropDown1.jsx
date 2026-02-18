@@ -28,7 +28,7 @@ function DropDown1({title = "Menu", categoryUrl = "/", items = []}) {
             position: "absolute",
             top: "100%",
             background: "#f1f1f1",
-            minWidth: "160px",
+            minWidth: "120px",
             display: "flex",
             flexDirection: "column",
             boxShadow: "0px 0px 16px rgb(173, 7, 7)",

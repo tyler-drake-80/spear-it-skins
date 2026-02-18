@@ -12,6 +12,7 @@ function CategoryPage() {
   return (
     <>
       <h1>{type.toUpperCase()}</h1> //display type as page title 
+      <h2>Pictures coming soon...</h2>
       <p>{data.description}</p>
     </>
   );
@@ -24,8 +25,25 @@ const categoryData = {
     title: "Pistols",
     description: "pistols are good as a secondary weapon sometimes"
   },
+
   smgs: {
     title: "SMGs",
     description: "smgs are good for short range use "
+  },
+
+  rifles: {
+    title: "Rifles",
+    description: "good for longer range fights" 
+  },
+
+  heavy: {
+    title: "Heavy",
+    description: "Shotguns / Light Machine Guns"
+  },
+
+  knives: {
+    title: "Knives",
+    description: "great for close combat"
   }
+  
 };
