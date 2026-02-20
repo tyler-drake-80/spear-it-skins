@@ -21,7 +21,7 @@ This project uses Docker to run Postgres locally for development.
 
 **Prerequisite**: Install Docker Desktop -> https://www.docker.com/products/docker-desktop/
 
-**Start the database**
+**Start the database from project root**
 
 ```bash
 docker-compose up -d 
