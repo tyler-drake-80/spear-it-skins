@@ -15,6 +15,26 @@ The CS:GO skin economy is a large-scale digital marketplace involving millions o
 
 ---
 
+## Development only local Postgres 
+
+This project uses Docker to run Postgres locally for development.
+**Prerequisite**: Install Docker Desktop -> https://www.docker.com/products/docker-desktop/
+**Start the database**
+```bash
+docker-compose up -d 
+```
+**Stop the database**
+```bash
+docker-compose down
+```
+
+Database runs on **localhost:5432"
+
+**Dev credentials:**
+user: skins
+password: skins
+database: skins
+
 ## Features & User Roles
 
 ### User Types
