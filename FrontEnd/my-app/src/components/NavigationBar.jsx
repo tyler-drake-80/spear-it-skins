@@ -42,13 +42,36 @@ function NavBar() {
     ]
 
     const knives = [
-      {label: "Bayonet", url:"/category/knives/Bayonet"},
-    ]
+      { label: "Bayonet",         url: "/category/knives/Bayonet" },
+      { label: "Bowie-Knife",     url: "/category/knives/Bowie-Knife" },
+      { label: "Butterfly-Knife", url: "/category/knives/Butterfly-Knife" },
+      { label: "Classic-Knife",   url: "/category/knives/Classic-Knife" },
+      { label: "Falchion-Knife",  url: "/category/knives/Falchion-Knife" },
+      { label: "Flip-Knife",      url: "/category/knives/Flip-Knife" },
+      { label: "Gut-Knife",       url: "/category/knives/Gut-Knife" },
+      { label: "Huntsman-Knife",  url: "/category/knives/Huntsman-Knife" },
+      { label: "Karambit",        url: "/category/knives/Karambit" },
+      { label: "Kukri-Knife",     url: "/category/knives/Kukri-Knife" },
+      { label: "M9-Bayonet",      url: "/category/knives/M9-Bayonet" },
+      { label: "Navaja-Knife",    url: "/category/knives/Navaja-Knife" },
+      { label: "Nomad-Knife",     url: "/category/knives/Nomad-Knife" },
+      { label: "Paracord-Knife",  url: "/category/knives/Paracord-Knife" },
+      { label: "Shadow-Daggers",  url: "/category/knives/Shadow-Daggers" },
+      { label: "Skeleton-Knife",  url: "/category/knives/Skeleton-Knife" },
+      { label: "Stiletto-Knife",  url: "/category/knives/Stiletto-Knife" },
+      { label: "Survival-Knife",  url: "/category/knives/Survival-Knife" },
+      { label: "Talon-Knife",     url: "/category/knives/Talon-Knife" },
+      { label: "Ursus-Knife",     url: "/category/knives/Ursus-Knife" },
+    ];
     const heavy = [
-      {label:"Sawed-Off", url:"/category/heavy/Sawed-Off" },
-      {label:"M249", url: "/category/heavy/Negev"}
-    ]
-    
+      { label: "MAG-7",     url: "/category/heavy/MAG-7" },
+      { label: "Nova",      url: "/category/heavy/Nova" },
+      { label: "Sawed-Off", url: "/category/heavy/Sawed-Off" },
+      { label: "XM1014",    url: "/category/heavy/XM1014" },
+      { label: "M249",      url: "/category/heavy/M249" },
+      { label: "Negev",     url: "/category/heavy/Negev" },
+    ];
+        
 
   return (
     <nav style={styles.nav}>
