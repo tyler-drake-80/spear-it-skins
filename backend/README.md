@@ -74,9 +74,9 @@ More details -> **docs/API.md**
 
 ---
 
-spear-it-skins-frontend/
+frontend/
     ...
-spear-it-skins-backend/
+backend/
     src/
         server.js               # Entrypoint: starts server + scheduler
         app.js                  # Express app setup: middleware + routes
