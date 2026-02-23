@@ -10,6 +10,40 @@ Node.js + Express backend that fetches CSGO market data from Skinport, caches it
 
 ---
 
+## Postgres (Dev)
+
+Backend supports a local Postgres db for development.
+
+### Configure env
+
+Create a '.env' file (do not commit), using `.env.example`:
+
+ - `DATABASE_URL=postgres://skins:skins@localhost:5432/skins`
+
+---
+
+### Start Postgres via Docker
+
+```bash
+docker compose up -docker
+```
+
+---
+
+### Apply schema
+
+```bash
+docker exec -i skins_postgres psql -U skins -d skins < db/schema.sql
+```
+
+---
+
+### Verify DB connectivity
+If DATABASE_URL is set, this endpoint should report dbEnabled: true:
+```bash
+curl -s http://localhost:4000/api/v1/health/db 
+```
+If DATABASE_URL is not set, it will return **dbEnabled: false** (non-breaking)
 ### Prerequisites
 
 -**Node.js installed** (V18.0 + recommended)
