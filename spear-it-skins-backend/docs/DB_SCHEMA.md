@@ -17,8 +17,9 @@ Represents the catalog of tradeable items
 **Purpose:**
  - Stores one row per unique **market_hash_name**
  - Acts as the parent table for all pricing data
-**Primary key:**
- - id (BIGSERIAL)
+
+**Primary key:** id (BIGSERIAL)
+  
 **Important columns:**
  - market_hash_name(UNIQUE)
  - item_type
