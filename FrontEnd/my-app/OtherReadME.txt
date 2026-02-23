@@ -1,9 +1,0 @@
-installs
-only runs locally for now 
-
-npm install 
-
-npm install react-bootstrap bootstrap // not used yet 
-npm install react-router-dom
-npm install react-dom
-npm run dev 
