@@ -70,7 +70,9 @@ function NavBar() {
       { label: "XM1014",    url: "/category/heavy/XM1014" },
       { label: "M249",      url: "/category/heavy/M249" },
       { label: "Negev",     url: "/category/heavy/Negev" },
-    ];
+    ]
+    const home = []
+    ;
         
 
   return (
@@ -107,7 +109,12 @@ function NavBar() {
           categoryUrl="/category/heavy"
           items= {heavy} 
         />
-        
+
+        <DropDown1
+          title="Home"
+          categoryUrl="/"
+          items= {home}
+        />
       </div>
     </nav>
   );
@@ -118,7 +125,7 @@ const styles = {
     display: "flex",
     justifyContent: "space-between",
     alignItems: "center",
-    padding: "15px 25px",
+    padding: "15px 35px",
     backgroundColor: "#b1b1b1",
     color: "#690000",
   },
