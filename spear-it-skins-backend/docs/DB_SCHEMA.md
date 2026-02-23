@@ -30,9 +30,10 @@ Represents the catalog of tradeable items
  - Stores the most recent pricing snapshot of each item 
  - Enables fast retrieval of current market state
  - Avoids scanning historical Tables
-**Primary key:**
- - item_id (FK -> items.id)
-**Important columns:**
+
+**Primary key:** item_id (FK -> items.id)
+
+ **Important columns:**
  - min_price
  - suggested_price
  - quantity
@@ -43,9 +44,10 @@ Represents the catalog of tradeable items
  - Stores historical pricing snapshots over time
  - Enables trend analysis and charting
  - Composite PK ensures no duplicate timestamps
-**Primary key:**
- - (item_id, as_of)
-**Foreign key**
- - item_id -> items.id (ON DELETE CASCADE)
 
+**Primary key:** (item_id, as_of)
+ 
+**Foreign key:** item_id -> items.id (ON DELETE CASCADE)
+
+ 
 
