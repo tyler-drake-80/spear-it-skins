@@ -1,7 +1,6 @@
 // src/routes/items.routes.js
 //Exposes cached data for frontend consumption.
 //Supports search + returns 'pages' to avoid sending full dataset.
-// src/routes/items.routes.js
 const express = require("express");
 const itemsCache = require("../cache/itemsCache");
 
