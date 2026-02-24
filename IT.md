@@ -1,6 +1,6 @@
 # Software Implementation and Testing Document For Group 3
 
-## Authors: Tyler Drake, Christian Wilsey, ...
+## Authors: Tyler Drake, Christian Wilsey, Luis Villanueva, Emanuel Reyes Martinez, Jamie Velasquez
 
 ### 1. Programming languages
  - JavaScript

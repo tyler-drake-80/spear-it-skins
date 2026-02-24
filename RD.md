@@ -1,6 +1,6 @@
 # Software Requirements and Design Document For Group 3
 
-## Authors: Tyler Drake, Christian Wilsey, ...
+## Authors: Tyler Drake, Christian Wilsey, Luis Villanueva, Emanuel Reyes Martinez, Jamie Velasquez
 
 ### 1. Overview
 The system under development is a web based application that provides structured access to Counter-Strike skin and weapon market data. The platform consists of a frontend web interface and a backend RESTful API. The frontend allows users to browse weapon categories and navigate to individual weapon pages, while the backend provides structured JSON data through versioned API endpoints.
