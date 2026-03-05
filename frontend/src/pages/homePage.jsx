@@ -7,7 +7,6 @@ function HomePage() {
 
       <h1>Home Page </h1>
       <h3>will update pics to match category</h3>
-      <h3>also will add a home button</h3>
       <h3> pictures are clickable</h3>
 
       <div style ={styles.grid}> 
