@@ -17,7 +17,7 @@ function CategoryPage() {
   return (
     <>
       <h1>{type.toUpperCase()}</h1> //display type as page title 
-      <h2>Pictures will be updated soon,but individual links are working </h2>
+      <h2>Pictures will be updated soon,only cs75-auto link works for now </h2>
       <p>{data.description}</p>
       <div style = {styles.grid}>
         {weaponsList.map((weapon) => (
