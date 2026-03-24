@@ -4,7 +4,8 @@ export const pistolSkins = {
     {
       "name": "Victoria",
       "image": "",
-      "description": ""
+      "description": "",
+      "url_add_on": "Victoria"
     },
     {
       "name": "Xiangliu",

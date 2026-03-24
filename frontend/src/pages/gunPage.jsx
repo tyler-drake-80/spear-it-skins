@@ -1,12 +1,19 @@
 import { useParams } from "react-router-dom"; //lets you read the dynamic part of the url
 import { pistolSkins } from "../data/pistolSkins";
 import CategoryPicture from "../components/CategoryPicture";
+import { Link } from "react-router-dom";
+
 function GunPage() {
   const { type, itemId } = useParams();    // for /category/pistols in url , type = pistols 
 
+  const data = pistolSkins[itemId]; //match url paramaters to categoryData if exists
 
   
   const weaponsList = pistolSkins[itemId];
+
+    if (!data) {
+    return <h2>page not complete yet</h2>;
+  }
 
    return (
     <>
@@ -19,7 +26,7 @@ function GunPage() {
         <CategoryPicture
           img = "/SmgStock.png"
           title = {data.name}
-          link = {"/"}
+          link = {`/category/pistols/${itemId}/${data.url_add_on}`}
         />
         ))}  
       </div>

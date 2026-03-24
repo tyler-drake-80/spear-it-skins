@@ -5,6 +5,7 @@ import {Routes, Route} from "react-router-dom";
 import CategoryPage from "./pages/categoryPage.jsx";
 import HomePage    from "./pages/homePage.jsx";
 import GunPage from "./pages/gunPage.jsx";
+import SkinPage from "./pages/skinPage.jsx"
 
 function App() {
   return (
@@ -12,8 +13,9 @@ function App() {
       <NavBar />
       <Routes>
         <Route path ="/"      element={<HomePage />} />
-        <Route path="/category/:type/:itemId" element={<GunPage />} />
         <Route path="/category/:type" element={<CategoryPage />} />
+        <Route path="/category/:type/:itemId" element={<GunPage />} />
+        <Route path="/category/:type/:itemId/:gunId" element={<SkinPage />} />
 
 
       </Routes>

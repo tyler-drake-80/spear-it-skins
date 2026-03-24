@@ -6,8 +6,7 @@ function HomePage() {
 
 
       <h1>Home Page </h1>
-      <h3>will update pics to match category</h3>
-      <h3> pictures are clickable</h3>
+      <h3> pictures are linked to respective category page</h3>
 
       <div style ={styles.grid}> 
       <CategoryPicture
@@ -23,19 +22,19 @@ function HomePage() {
       />  
 
             <CategoryPicture 
-        img = "/SmgStock.png"
+        img = "/Rifle.png"
         title = "Rifles"
         link = "/category/rifles"
       />  
 
             <CategoryPicture 
-        img = "/SmgStock.png"
+        img = "/Knife.png"
         title = "Knives"
         link = "/category/knives"
       />  
 
             <CategoryPicture 
-        img = "/SmgStock.png"
+        img = "/Heavy.png"
         title = "Heavy"
         link = "/category/heavy"
       />  

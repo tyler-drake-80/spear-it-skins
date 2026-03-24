@@ -3,16 +3,15 @@
 function SkinPage () {
   return (
     <>
-      <h1>{type.toUpperCase()}</h1> //display type as page title 
-      <h2>Pictures will be updated soon,but individual links are working </h2>
-      <p>{data.description}</p>
+      <h1></h1> 
+      <h2>connect to back end and display info like 
+        min/max prices, cost, and so on , 
+        will also need seperate file to display images with name/ rarity </h2>
+      <p></p>
 
     </>
   );
 }
-
-export default SkinPage;
-
 
 
 
@@ -31,3 +30,7 @@ const styles = {
   
 
 }
+
+
+export default SkinPage;
+

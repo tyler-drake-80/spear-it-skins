@@ -1,15 +1,15 @@
 export const weapons = {
 pistols : [
-  { label: "CZ75-Auto", url: "/category/pistols/CZ75-Auto" },
-  { label: "Desert Eagle", url: "/category/pistols/Desert-Eagle" },
-  { label: "Dual Berettas", url: "/category/pistols/Dual-Berettas" },
-  { label: "Five-SeveN", url: "/category/pistols/Five-Seven" },
-  { label: "Glock-18", url: "/category/pistols/Glock-18" },
-  { label: "P2000", url: "/category/pistols/P2000" },
-  { label: "P250", url: "/category/pistols/P250" },
-  { label: "R8-Revolver", url: "/category/pistols/R8-Revolver" },
-  { label: "Tec-9", url: "/category/pistols/Tec-9" },
-  { label: "USP-S", url: "/category/pistols/USP-S" },
+  { label: "CZ75-Auto", url: "/category/pistols/CZ75-Auto", img: "/pistolsCategory/imgi_8_CZ75-Auto.png" },
+  { label: "Desert Eagle", url: "/category/pistols/Desert-Eagle", img: "/pistolsCategory/imgi_9_Desert_Eagle.png" },
+  { label: "Dual Berettas", url: "/category/pistols/Dual-Berettas", img: "/pistolsCategory/imgi_10_Dual_Berettas.png" }, 
+  { label: "Five-SeveN", url: "/category/pistols/Five-Seven", img: "/pistolsCategory/imgi_11_Five-SeveN.png" },
+  { label: "Glock-18", url: "/category/pistols/Glock-18", img: "/pistolsCategory/imgi_12_Glock-18.png" },
+  { label: "P2000", url: "/category/pistols/P2000", img: "/pistolsCategory/imgi_13_P2000.png"},
+  { label: "P250", url: "/category/pistols/P250", img: "/pistolsCategory/imgi_14_P250.png" },
+  { label: "R8-Revolver", url: "/category/pistols/R8-Revolver", img: "/pistolsCategory/imgi_15_R8_Revolver.png" },
+  { label: "Tec-9", url: "/category/pistols/Tec-9", img: "/pistolsCategory/imgi_16_Tec-9.png" },
+  { label: "USP-S", url: "/category/pistols/USP-S", img : "/pistolsCategory/imgi_17_USP-S.png"},
   { label: "Zeus-x27", url: "/category/pistols/Zeus-x27" }
 ],
 

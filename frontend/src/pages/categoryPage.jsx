@@ -22,7 +22,7 @@ function CategoryPage() {
       <div style = {styles.grid}>
         {weaponsList.map((weapon) => (
         <CategoryPicture
-          img = "/SmgStock.png"
+          img = {weapon.img || "/SmgStock.png"}
           title = {weapon.label}
           link = {weapon.url}
         />
