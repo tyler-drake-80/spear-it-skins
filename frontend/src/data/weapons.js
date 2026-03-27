@@ -59,72 +59,89 @@ pistols : {
  smgs : {
   "Mac-10": { 
     name: "Mac-10", url: "/category/smgs/Mac-10", 
+    img: "/smgImages/MAC-10.png",
     description: "Has excellent fire rate to get the job done" },
   
   "MP5-SD":  { 
     name: "MP5-SD", url: "/category/smgs/MP5-SD" , 
+    img: "/smgImages/MP5-SD.png",
     description: ""},
   
   "MP7":  { 
     name: "MP7", url: "/category/smgs/MP7", 
+    img: "/smgImages/MP7.png",
     description: "" },
   
   "MP9":  { 
     name: "MP9", url: "/category/smgs/MP9", 
+    img: "/smgImages/MP9.png",
     description: "" },
   
   "PP-Bizon":  { 
     name: "PP-Bizon", url: "/category/smgs/PP-Bizon" , 
+    img: "/smgImages/PP-Bizon.png",
     description: "Good smg with a large magazine "},
   
   "UMP-45":  { 
     name: "UMP-45", url: "/category/smgs/UMP-45", 
+    img: "/smgImages/UMP-45.png",
     description: "" }
   },
 
  rifles : {
   "AK-47": { 
     name: "AK-47", url: "/category/rifles/AK-47", 
+    img: "/rifleImages/AK-47.png",
     description: "" },
   
   "AUG":  { 
     name: "AUG", url: "/category/rifles/AUG" , 
+    img: "/rifleImages/AUG.png",
     description: ""},
   
   "FAMAS":  { 
     name: "FAMAS", url: "/category/rifles/FAMAS", 
+    img: "/rifleImages/FAMAS.png",
     description: "" },
   
   "Galil-AR":  { 
     name: "Galil-AR", url: "/category/rifles/Galil-AR", 
+    img: "/rifleImages/Galil_AR.png",
     description: "" },
   
   "M4A1-S":  { 
     name: "M4A1-S", url: "/category/rifles/M4A1-S" , 
+    img: "/rifleImages/M4A1-S.png",
     description: ""},
   
   "M4A4":  { 
     name: "M4A4", url: "/category/rifles/M4A4", 
+    img: "/rifleImages/M4A4.png",
     description: "" },
   
   "SG-553":  { 
-    name: "SG-553", url: "/category/rifles/SG-553", 
+    name: "SG-553", url: "/category/rifles/SG-553",
+    
     description: ""},
   
   AWP:  { 
     name: "AWP", url: "/category/rifles/AWP", 
+    img: "/rifleImages/AWP.png",
     description: "" },
   
   "G3SG1":  { 
     name: "G3SG1", url: "/category/rifles/G3SG1", 
+    
     description: "" },
   
   "SCAR-20":  { 
     name: "SCAR-20", url: "/category/rifles/SCAR-20", 
+    
     description: "" },
   
   "SSG-08":  { 
     name: "SSG-08", url: "/category/rifles/SSG-08", 
+    
     description: "" }
   },
 
@@ -169,18 +186,22 @@ pistols : {
  heavy : {
   "MAG-7": { 
     name: "MAG-7", url: "/category/heavy/MAG-7", 
+    img: "/shotgunImages/MAG-7.png" ,
     description: "" },
   
   "Nova": { 
     name: "Nova", url: "/category/heavy/Nova", 
+    img: "/shotgunImages/Nova.png" ,
     description: "" },
   
   "Sawed-Off":  { 
-    name: "Sawed-Off", url: "/category/heavy/Sawed-Off", 
+    name: "Sawed-Off", url: "/category/heavy/Sawed-Off",
+    img: "/shotgunImages/Sawed-Off.png" ,
     description: "Great for short range combat dealing high damage" },
   
   "XM1014":  { 
     name: "XM1014", url: "/category/heavy/XM1014", 
+    img: "/shotgunImages/XM1014.png" ,
     description: "" },
   
   "M249":  { 

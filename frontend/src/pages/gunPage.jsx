@@ -26,7 +26,7 @@ function GunPage() {
       <div style = {styles.grid}>
         {skinList.map((data) => (
         <CategoryPicture
-          img = {data.img || "/SmgStock.png"} 
+          img = {data.img || "/stockGun.png"} 
           title = {data.name}
           link = {  data?.url_add_on
             ? `/category/pistols/${itemId}/${data.url_add_on}`

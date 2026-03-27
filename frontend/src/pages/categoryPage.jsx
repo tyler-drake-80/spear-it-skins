@@ -23,7 +23,7 @@ function CategoryPage() {
         {weaponsList.map((weapon) => (
         <CategoryPicture
           key = {weapon.name}
-          img = {weapon.img || "/SmgStock.png"}
+          img = {weapon.img || "/stockGun.png"}
           title = {weapon.name}
           link = {weapon.url}
         />
