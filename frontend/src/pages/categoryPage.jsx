@@ -8,7 +8,7 @@ function CategoryPage() {
   const { type } = useParams();    // gets /category/"weapons type" in url , type = "weapon type" 
 
   const data = categoryInfo[type]; //match url paramaters to categoryData if exists
-  const weaponsList = weapons[type];
+  const weaponsList = Object.values( weapons[type] || {});
 
   if (!data) {
     return <h2>Category not found</h2>;
@@ -16,12 +16,13 @@ function CategoryPage() {
 
   return (
     <>
-      <h1>{type.toUpperCase()}</h1> //display type as page title 
+      <h1>{type.toUpperCase()}</h1>  
       <h2>Pictures will be updated soon,only cs75-auto link works for now </h2>
       <p>{data.description}</p>
       <div style = {styles.grid}>
         {weaponsList.map((weapon) => (
         <CategoryPicture
+          key = {weapon.name}
           img = {weapon.img || "/SmgStock.png"}
           title = {weapon.name}
           link = {weapon.url}

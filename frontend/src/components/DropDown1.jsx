@@ -35,7 +35,7 @@ function DropDown1({title = "Menu", categoryUrl = "/", items = []}) {
             zIndex: 9999,
           }}
         >
-          {items.map((item, index) => (
+          {Object.values(items || {}).map((item) => (
             <Link
               key= {item.url}
               to = {item.url} 
