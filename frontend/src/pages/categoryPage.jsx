@@ -7,7 +7,7 @@ import {Link} from "react-router-dom";
 function CategoryPage() {
   const { type } = useParams();    // gets /category/"weapons type" in url , type = "weapon type" 
 
-  const data = categoryData[type]; //match url paramaters to categoryData if exists
+  const data = categoryInfo[type]; //match url paramaters to categoryData if exists
   const weaponsList = weapons[type];
 
   if (!data) {
@@ -23,7 +23,7 @@ function CategoryPage() {
         {weaponsList.map((weapon) => (
         <CategoryPicture
           img = {weapon.img || "/SmgStock.png"}
-          title = {weapon.label}
+          title = {weapon.name}
           link = {weapon.url}
         />
         ))}  
@@ -34,7 +34,7 @@ function CategoryPage() {
 
 export default CategoryPage;
 
-const categoryData = {
+const categoryInfo = {
   pistols: {
     title: "Pistols",
     description: "pistols are good as a secondary weapon sometimes"

@@ -4,14 +4,14 @@ import CategoryPicture from "../components/CategoryPicture";
 import { Link } from "react-router-dom";
 
 function GunPage() {
-  const { type, itemId } = useParams();    // for /category/pistols in url , type = pistols 
+  const { type, itemId } = useParams();    // for /category/pistols in url , type = gun class, itemId = specific gun  
 
-  const data = pistolSkins[itemId]; //match url paramaters to categoryData if exists
+  const gunName = pistolSkins[itemId]; //match url paramaters to categoryData if exists
 
   
-  const weaponsList = pistolSkins[itemId];
+  const skinList = pistolSkins[itemId];
 
-    if (!data) {
+    if (!gunName) {
     return <h2>page not complete yet</h2>;
   }
 
@@ -19,12 +19,12 @@ function GunPage() {
     <>
       <h1>Page for {itemId.toUpperCase() } skins </h1>
       <h3>Category: {type} </h3>
-      <h3>fill in with skins of each respective gun, also urls do not work yet </h3>
+      <h3>need to fill in with skins of each respective gun </h3>
       
       <div style = {styles.grid}>
-        {weaponsList.map((data) => (
+        {skinList.map((data) => (
         <CategoryPicture
-          img = "/SmgStock.png"
+          img = {data.img || "/SmgStock.png"} 
           title = {data.name}
           link = {`/category/pistols/${itemId}/${data.url_add_on}`}
         />

@@ -45,7 +45,7 @@ function DropDown1({title = "Menu", categoryUrl = "/", items = []}) {
                 color: "black"
               }}
             >
-              {item.label}
+              {item.name}
             </Link>    
           ))}
 

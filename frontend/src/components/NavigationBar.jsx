@@ -45,10 +45,18 @@ function NavBar() {
         />
 
         <DropDown1
+          title = "Gloves"
+          categoryUrl="/category/gloves"
+          items = {weapons["gloves"]}
+        />
+
+        
+        <DropDown1
           title="Home"
           categoryUrl="/"
           items= {home}
         />
+        
       </div>
     </nav>
   );

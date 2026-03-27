@@ -3,183 +3,183 @@ export const pistolSkins = {
   "CZ75-Auto" :[
     {
       "name": "Victoria",
-      "image": "",
+      "img": "",
       "description": "",
       "url_add_on": "Victoria"
     },
     {
       "name": "Xiangliu",
-      "image": "",
+      "img": "",
       "description": ""
     },
     {
       "name": "Yellow Jacket",
-      "image": "",
+      "img": "",
       "description": ""
     },
     {
       "name": "Tacticat",
-      "image": "",
+      "img": "",
       "description": ""
     },
     {
       "name": "Syndicate",
-      "image": "",
+      "img": "",
       "description": ""
     },
     {
       "name": "Crimson Web",
-      "image": "",
+      "img": "",
       "description": ""
     },
     {
       "name": "Pole Position",
-      "image": "",
+      "img": "",
       "description": ""
     },
     {
       "name": "Tigris",
-      "image": "",
+      "img": "",
       "description": ""
     },
     {
       "name": "Circaetus",
-      "image": "",
+      "img": "",
       "description": ""
     },
     {
       "name": "Red Astor",
-      "image": "",
+      "img": "",
       "description": ""
     },
     {
       "name": "Eco",
-      "image": "",
+      "img": "",
       "description": ""
     },
     {
       "name": "Slalom",
-      "image": "",
+      "img": "",
       "description": ""
     },
     {
       "name": "Copper Fiber",
-      "image": "",
+      "img": "",
       "description": ""
     },
     {
       "name": "Emerald",
-      "image": "",
+      "img": "",
       "description": ""
     },
     {
       "name": "Polymer",
-      "image": "",
+      "img": "",
       "description": ""
     },
     {
       "name": "Hexane",
-      "image": "",
+      "img": "",
       "description": ""
     },
     {
       "name": "Imprint",
-      "image": "",
+      "img": "",
       "description": ""
     },
     {
       "name": "Emerald Quartz",
-      "image": "",
+      "img": "",
       "description": ""
     },
     {
       "name": "Tread Plate",
-      "image": "",
+      "img": "",
       "description": ""
     },
     {
       "name": "Framework",
-      "image": "",
+      "img": "",
       "description": ""
     },
     {
       "name": "Vendetta",
-      "image": "",
+      "img": "",
       "description": ""
     },
     {
       "name": "Twist",
-      "image": "",
+      "img": "",
       "description": ""
     },
     {
       "name": "Nitro",
-      "image": "",
+      "img": "",
       "description": ""
     },
     {
       "name": "Poison Dart",
-      "image": "",
+      "img": "",
       "description": ""
     },
     {
       "name": "The Fuschia Is Now",
-      "image": "",
+      "img": "",
       "description": ""
     },
     {
       "name": "Tuxedo",
-      "image": "",
+      "img": "",
       "description": ""
     },
     {
       "name": "Army Sheen",
-      "image": "",
+      "img": "",
       "description": ""
     },
     {
       "name": "Distressed",
-      "image": "",
+      "img": "",
       "description": ""
     },
     {
       "name": "Jungle Dashed",
-      "image": "",
+      "img": "",
       "description": ""
     },
     {
       "name": "Indigo",
-      "image": "",
+      "img": "",
       "description": ""
     },
     {
       "name": "Green Plaid",
-      "image": "",
+      "img": "",
       "description": ""
     },
     {
       "name": "Pink Pearl",
-      "image": "",
+      "img": "",
       "description": ""
     },
     {
       "name": "Silver",
-      "image": "",
+      "img": "",
       "description": ""
     },
     {
       "name": "Midnight Palm",
-      "image": "",
+      "img": "",
       "description": ""
     },
     {
       "name": "Honey Paisley",
-      "image": "",
+      "img": "",
       "description": ""
     },
     {
       "name": "Chalice",
-      "image": "",
+      "img": "",
       "description": ""
     }
   ]
