@@ -1,6 +1,9 @@
 
 import CategoryPicture from "../components/CategoryPicture";
 function HomePage() {
+ 
+
+
   return (
     <>
 

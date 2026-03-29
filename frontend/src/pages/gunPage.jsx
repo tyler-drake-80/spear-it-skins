@@ -8,14 +8,13 @@ function GunPage() {
 
   const gunName = pistolSkins[itemId]; //match url paramaters to categoryData if exists
   
-  const skinList = pistolSkins[itemId];
-
-    if (!gunName) {
+   if (!gunName) {
     return <h2>page not complete yet</h2>;
   }
+  const skinList = Object.values(pistolSkins[itemId]);
   const weaponData = weapons[type]?.[itemId];
   const description = weaponData?.description;
-  
+  const weaponsList = Object.values( weapons[type] || {});
   
    return (
     <>

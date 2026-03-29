@@ -8,9 +8,9 @@ function CategoryPage() {
   const { type } = useParams();    // gets /category/"weapons type" in url , type = "weapon type" 
 
   const data = categoryInfo[type]; //match url paramaters to categoryData if exists
-  const weaponsList = Object.values( weapons[type] || {});
+  const weaponsList = Object.values( weapons[type] || {}); //gets the list of weapons for a corresponding gun category based on {type}
 
-  if (!data) {
+  if (!data) {                  //error checking if there is not valid page for a url consisting of /category/pistols/(something not valid)
     return <h2>Category not found</h2>;
   }
 

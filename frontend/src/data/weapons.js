@@ -6,19 +6,19 @@ pistols : {
     description: "Great substitue for an smg"
   },
   
-  "Desert Eagle" : { 
+  "Desert-Eagle" : { 
     name: "Desert Eagle", url: "/category/pistols/Desert-Eagle", img: "/pistolsCategory/imgi_9_Desert_Eagle.png", 
     description: "Powerful pistol that deals excellent damage " 
   },
   
-  "Dual Berettas": {
+  "Dual-Berettas": {
      name: "Dual Berettas", url: "/category/pistols/Dual-Berettas", img: "/pistolsCategory/imgi_10_Dual_Berettas.png", 
      description: "Why use one pistol when you can use two?" 
   }, 
   
-  "Five-SeveN":  { 
+  "Five-Seven":  { 
     name: "Five-SeveN", url: "/category/pistols/Five-Seven", img: "/pistolsCategory/imgi_11_Five-SeveN.png", 
-    description: "" 
+    description: "description filler x" 
   },
   
   "Glock-18":  { 
@@ -28,12 +28,12 @@ pistols : {
   
   "P2000":  { 
     name: "P2000", url: "/category/pistols/P2000", img: "/pistolsCategory/imgi_13_P2000.png", 
-    description: ""
+    description: "description filler 1"
   },
   
   "P250":  { 
     name: "P250", url: "/category/pistols/P250", img: "/pistolsCategory/imgi_14_P250.png" , 
-    description: ""
+    description: "description filler 2"
   },
   
   "R8-Revolver":  { 
@@ -42,17 +42,17 @@ pistols : {
   
   "Tec-9":  { 
     name: "Tec-9", url: "/category/pistols/Tec-9", img: "/pistolsCategory/imgi_16_Tec-9.png", 
-    description: "" 
+    description: "description filler 3" 
   },
   
   "USP-S":  { 
     name: "USP-S", url: "/category/pistols/USP-S", img : "/pistolsCategory/imgi_17_USP-S.png", 
-    description: ""
+    description: "description filler 4"
   },
   
   "Zeus-x27":  { 
     name: "Zeus-x27", url: "/category/pistols/Zeus-x27", 
-    description: "" 
+    description: "description filler 5" 
   }
   },
 
@@ -124,7 +124,7 @@ pistols : {
     
     description: ""},
   
-  AWP:  { 
+  "AWP":  { 
     name: "AWP", url: "/category/rifles/AWP", 
     img: "/rifleImages/AWP.png",
     description: "" },
