@@ -65,17 +65,17 @@ pistols : {
   "MP5-SD":  { 
     name: "MP5-SD", url: "/category/smgs/MP5-SD" , 
     img: "/smgImages/MP5-SD.png",
-    description: ""},
+    description: "random des 1"},
   
   "MP7":  { 
     name: "MP7", url: "/category/smgs/MP7", 
     img: "/smgImages/MP7.png",
-    description: "" },
+    description: "test 1 " },
   
   "MP9":  { 
     name: "MP9", url: "/category/smgs/MP9", 
     img: "/smgImages/MP9.png",
-    description: "" },
+    description: "test 2" },
   
   "PP-Bizon":  { 
     name: "PP-Bizon", url: "/category/smgs/PP-Bizon" , 
@@ -85,7 +85,8 @@ pistols : {
   "UMP-45":  { 
     name: "UMP-45", url: "/category/smgs/UMP-45", 
     img: "/smgImages/UMP-45.png",
-    description: "" }
+    description: "random des 3"
+   }
   },
 
  rifles : {

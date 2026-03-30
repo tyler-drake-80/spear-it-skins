@@ -2,16 +2,25 @@ import { useParams } from "react-router-dom"; //lets you read the dynamic part o
 import { pistolSkins } from "../data/pistolSkins";
 import CategoryPicture from "../components/CategoryPicture";
 import { Link } from "react-router-dom";
-import {weapons} from "../data/weapons" 
+import {weapons} from "../data/weapons"; 
+import {smgSkins} from "../data/smgSkins"
 function GunPage() {
   const { type, itemId } = useParams();    // for /category/pistols in url , type = gun class, itemId = specific gun  
 
-  const gunName = pistolSkins[itemId]; //match url paramaters to categoryData if exists
-  
-   if (!gunName) {
-    return <h2>page not complete yet</h2>;
+  const skinData = {
+    pistols: pistolSkins,
+    smgs: smgSkins
+  };
+
+  const gunList = skinData[type];
+  const gunName = gunList?.[itemId];
+
+  if (!gunName) {
+    return <h2>Gun not found</h2>;
   }
-  const skinList = Object.values(pistolSkins[itemId]);
+
+  const skinList = Object.values(gunName);
+
   const weaponData = weapons[type]?.[itemId];
   const description = weaponData?.description;
   const weaponsList = Object.values( weapons[type] || {});
@@ -28,7 +37,7 @@ function GunPage() {
           img = {data.img || "/stockGun.png"} 
           title = {data.name}
           link = {  data?.url_add_on
-            ? `/category/pistols/${itemId}/${data.url_add_on}`
+            ? `/category/${type}/${itemId}/${data.url_add_on}`
             : "/"  }
         />
         ))}  

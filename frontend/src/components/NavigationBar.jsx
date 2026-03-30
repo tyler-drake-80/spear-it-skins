@@ -6,6 +6,7 @@ function NavBar() {
 
 
     const home = []
+    const gloves=[]
     ;
         
 
@@ -47,7 +48,7 @@ function NavBar() {
         <DropDown1
           title = "Gloves"
           categoryUrl="/category/gloves"
-          items = {weapons["gloves"]}
+          items = {gloves}
         />
 
         

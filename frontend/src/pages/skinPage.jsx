@@ -1,12 +1,27 @@
 import { pistolSkins } from "../data/pistolSkins";
 import { useParams } from "react-router-dom"; 
+import {smgSkins} from "../data/smgSkins"; 
+
 function SkinPage () {
    const { type, itemId, gunId } = useParams();  
 
+   const skinData = {
+    pistols: pistolSkins,
+    smgs: smgSkins
+   };
 
-   const weaponData = pistolSkins[itemId]?.[gunId];
+   const gunList = skinData[type];
+   
+
+
+   const weaponData = gunList?.[itemId]?.[gunId];
    const description = weaponData?.description;
-
+   
+   console.log("type:", type);
+console.log("itemId:", itemId);
+console.log("gunId:", gunId);
+console.log("gunList:", gunList);
+console.log("weaponData:", weaponData);
   return (
     <>
       <h1>{type}:{itemId}:{gunId} ----  </h1> 

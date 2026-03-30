@@ -1,7 +1,7 @@
 export const pistolSkins = {
 
   "CZ75-Auto" :{
-    Victoria :{
+    "Victoria" :{
       "name": "Victoria",
       "img": "",
       "description": "inspired by the victorian era",
@@ -230,6 +230,7 @@ export const pistolSkins = {
       "description": ""
     }
   },
+
   "Desert-Eagle": {
     "skin1":{
       "name": "blank(testing)",
@@ -248,6 +249,8 @@ export const pistolSkins = {
     },
 
   },
+
+
   "Five-Seven": {
     "skin1":{
       "name": "blank(testing)",
