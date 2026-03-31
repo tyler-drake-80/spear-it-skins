@@ -1,15 +1,21 @@
 import { useParams } from "react-router-dom"; //lets you read the dynamic part of the url
 import { pistolSkins } from "../data/pistolSkins";
+
 import CategoryPicture from "../components/CategoryPicture";
 import { Link } from "react-router-dom";
+
 import {weapons} from "../data/weapons"; 
 import {smgSkins} from "../data/smgSkins"
+import {rifleSkins} from "../data/rilfeSkins"
+
+
 function GunPage() {
   const { type, itemId } = useParams();    // for /category/pistols in url , type = gun class, itemId = specific gun  
 
   const skinData = {
     pistols: pistolSkins,
-    smgs: smgSkins
+    smgs: smgSkins,
+    rifles: rifleSkins
   };
 
   const gunList = skinData[type];
