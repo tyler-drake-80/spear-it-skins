@@ -2,6 +2,8 @@ import { pistolSkins } from "../data/pistolSkins";
 import { useParams } from "react-router-dom"; 
 import {smgSkins} from "../data/smgSkins"; 
 import {rifleSkins} from "../data/rilfeSkins"; 
+import {knifeSkins} from "../data/knifeSkins";
+import {heavySkins} from "../data/heavySkins";
 
 function SkinPage () {
    const { type, itemId, gunId } = useParams();  
@@ -9,7 +11,9 @@ function SkinPage () {
    const skinData = {
     pistols: pistolSkins,
     smgs: smgSkins,
-    rifles: rifleSkins
+    rifles: rifleSkins,
+    knives: knifeSkins,
+    heavy: heavySkins,
    };
 
    const gunList = skinData[type];

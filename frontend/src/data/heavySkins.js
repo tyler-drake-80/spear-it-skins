@@ -1,15 +1,15 @@
-export const knifeSkins = {
+export const heavySkins = {
 
-    "Bayonet": {
+    "MAG-7": {
         "Test1": { //<--- name here and 
-            "name": "Test k1",
+            "name": "Test h1",
             "img": "",
-            "description":"filler description k1",
+            "description":"filler description h1",
             "url_add_on":"Test1" //<--- here need to match to pull description for website
          },
     },
 
-    "Bowie-Knife":{
+    "Nova":{
         "TestZ": {
             "name": "Test kZ",
             "img": "",
@@ -20,7 +20,7 @@ export const knifeSkins = {
 
     },
 
-    "Butterfly-Knife": {
+    "Sawed-Off": {
         "Test2": {
             "name": "Test k2",
             "img": "",
@@ -31,7 +31,7 @@ export const knifeSkins = {
 
     },
 
-    "Classic-Knife": {
+    "XM1014": {
         "test3": {
             "name": "Test k3",
             "img": "",
@@ -45,7 +45,7 @@ export const knifeSkins = {
     },
 
 
-    "Falchion-Knife": {
+    "M249": {
         "test4": {
             "name": "Test k4",
             "img": "",
@@ -58,7 +58,7 @@ export const knifeSkins = {
 
     },
 
-    "Flip-Knife": {
+    "Negev": {
         "test5": {
             "name": "Test k5",
             "img": "",
@@ -70,41 +70,5 @@ export const knifeSkins = {
 
 
     },
-
-    "Gut-Knife": {
-        "test6": {
-            "name": "Test k6",
-            "img": "",
-            "description":"test k6 desc",
-            "url_add_on":"test6"
-         },
-
-        
-    },
-
-    "Huntsman-Knife": {
-        "test7": {
-            "name": "Test k7",
-            "img": "",
-            "description":"test k7 desc",
-            "url_add_on":"test7"
-         },
-
-        
-    },
-
-    "Karambit": {
-        "test8": { 
-            "name": "Test k8",
-            "img": "",
-            "description":"test k8 desc",
-            "url_add_on":"test8"
-         },
-
-        
-    },
-
-
-
 
 }

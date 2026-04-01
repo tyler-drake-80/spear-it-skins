@@ -5,8 +5,10 @@ import CategoryPicture from "../components/CategoryPicture";
 import { Link } from "react-router-dom";
 
 import {weapons} from "../data/weapons"; 
-import {smgSkins} from "../data/smgSkins"
-import {rifleSkins} from "../data/rilfeSkins"
+import {smgSkins} from "../data/smgSkins";
+import {rifleSkins} from "../data/rilfeSkins";
+import {knifeSkins} from "../data/knifeSkins"
+import {heavySkins} from "../data/heavySkins"
 
 
 function GunPage() {
@@ -15,7 +17,9 @@ function GunPage() {
   const skinData = {
     pistols: pistolSkins,
     smgs: smgSkins,
-    rifles: rifleSkins
+    rifles: rifleSkins,
+    knives: knifeSkins,
+    heavy: heavySkins,
   };
 
   const gunList = skinData[type];
