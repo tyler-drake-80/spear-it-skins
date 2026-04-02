@@ -39,6 +39,18 @@ Database runs on **localhost:5432**
  - password: skins
  - database: skins
 
+## Implemented Features
+
+### Backend
+- `GET /api/v1/items/history?name=<market_hash_name>` — queries `item_price_history` from PostgreSQL and returns historical min/suggested price snapshots for a specific item
+
+### Frontend
+- Category pages now render clickable weapon cards (image + name) sourced from a `weapons` array in `categoryData`
+- Weapon pages (`/category/:type/:itemId`) display skin cards that link to individual skin pages
+- Skin pages (`/category/:type/:itemId/:skinId`) display a wear table with float ranges and live prices fetched from the backend, with a price history chart (Recharts) that loads on wear row click
+- Shared skin data file (`src/data/skinsData.js`) centralises all skin/wear/case metadata and standard CS2 float ranges
+- Vite dev server proxy configured to forward `/api` requests to the backend on port 4000
+
 ## Features & User Roles
 
 ### User Types
