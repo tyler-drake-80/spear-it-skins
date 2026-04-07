@@ -31,11 +31,11 @@ function DropDown1({title = "Menu", categoryUrl = "/", items = []}) {
             minWidth: "120px",
             display: "flex",
             flexDirection: "column",
-            boxShadow: "0px 0px 16px rgb(173, 7, 7)",
+            boxShadow: "none",
             zIndex: 9999,
           }}
         >
-          {items.map((item, index) => (
+          {Object.values(items || {}).map((item) => (
             <Link
               key= {item.url}
               to = {item.url} 
@@ -45,7 +45,7 @@ function DropDown1({title = "Menu", categoryUrl = "/", items = []}) {
                 color: "black"
               }}
             >
-              {item.label}
+              {item.name}
             </Link>    
           ))}
 
