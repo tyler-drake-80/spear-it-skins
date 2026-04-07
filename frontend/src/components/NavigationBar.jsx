@@ -1,3 +1,5 @@
+import React from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import DropDown1 from "./DropDown1.jsx";
 import {weapons} from "../data/weapons";
 
@@ -12,7 +14,11 @@ function NavBar() {
 
   return (
     <nav style={styles.nav}>
-      <h2 style={styles.logo}>Spear It Skins</h2>
+      <h2 style={styles.logo}>
+        <Link to="/" style={{ textDecoration: 'none', color: '#690000' }}>
+          Spear It Skins
+        </Link>
+      </h2>
 
       <div style={styles.links}>
         <span>Weapons</span>
@@ -59,6 +65,40 @@ function NavBar() {
         />
         
       </div>
+
+      <div style={styles.authLinks}>
+        {isAuthenticated ? (
+          <>
+            <Link 
+              to="/profile"
+              style={styles.username}
+            >
+              👤 {user.username}
+            </Link>
+            <button 
+              onClick={handleLogout}
+              style={styles.authButton}
+            >
+              Logout
+            </button>
+          </>
+        ) : (
+          <>
+            <Link 
+              to="/login" 
+              style={styles.authButton}
+            >
+              Login
+            </Link>
+            <Link 
+              to="/register" 
+              style={styles.registerButton}
+            >
+              Register
+            </Link>
+          </>
+        )}
+      </div>
     </nav>
   );
 }
@@ -71,6 +111,8 @@ const styles = {
     padding: "15px 35px",
     backgroundColor: "#b1b1b1",
     color: "#690000",
+    flexWrap: "wrap",
+    gap: "15px",
   },
   links: {
     display: "flex",
@@ -79,6 +121,41 @@ const styles = {
   },
   logo: {
     margin: 0,
+  },
+  authLinks: {
+    display: "flex",
+    gap: "10px",
+    alignItems: "center",
+    flexWrap: "wrap",
+  },
+  authButton: {
+    padding: "8px 16px",
+    backgroundColor: "#690000",
+    color: "white",
+    border: "none",
+    borderRadius: "4px",
+    textDecoration: "none",
+    cursor: "pointer",
+    fontWeight: "bold",
+    fontSize: "14px",
+    transition: "background-color 0.3s",
+  },
+  registerButton: {
+    padding: "8px 16px",
+    backgroundColor: "#008700",
+    color: "white",
+    border: "none",
+    borderRadius: "4px",
+    textDecoration: "none",
+    cursor: "pointer",
+    fontWeight: "bold",
+    fontSize: "14px",
+    transition: "background-color 0.3s",
+  },
+  username: {
+    fontWeight: "bold",
+    fontSize: "14px",
+    whiteSpace: "nowrap",
   },
 };
 
