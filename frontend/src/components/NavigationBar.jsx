@@ -2,10 +2,17 @@ import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import DropDown1 from "./DropDown1.jsx";
 import {weapons} from "../data/weapons";
+import { useAuth } from '../context/AuthContext';
 
 
 function NavBar() {
 
+    const { isAuthenticated, user, logout } = useAuth();
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    logout();
+    navigate('/'); }
 
     const home = []
     const gloves=[]

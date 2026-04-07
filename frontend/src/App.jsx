@@ -9,6 +9,7 @@ import LoginPage from "./pages/loginPage.jsx";
 import RegisterPage from "./pages/registerPage.jsx";
 import ProfilePage from "./pages/profilePage.jsx";
 import { AuthProvider } from "./context/AuthContext.jsx";
+import SkinPage from './pages/skinPage.jsx';
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
         <Route path="/profile" element={<ProfilePage />} />
         <Route path="/category/:type/:itemId" element={<GunPage />} />
         <Route path="/category/:type" element={<CategoryPage />} />
+        <Route path="/category/:type/:itemId/:gunId" element={<SkinPage />} />
       </Routes>
     </AuthProvider>
   );
