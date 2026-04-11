@@ -86,10 +86,58 @@ export function AuthProvider({ children }) {
     localStorage.removeItem('user');
   };
 
+  const addSkin = (skin) => {
+    if (!user) return;
+    
+    const users = JSON.parse(localStorage.getItem('users') || '[]');
+    const updatedUsers = users.map(u => {
+      if (u.id === user.id) {
+        const inventory = u.inventory || [];
+        // Avoid duplicates
+        if (!inventory.find(s => s.market_hash_name === skin.market_hash_name)) {
+          inventory.push({ ...skin, addedAt: new Date().toISOString() });
+        }
+        return { ...u, inventory };
+      }
+      return u;
+    });
+    
+    localStorage.setItem('users', JSON.stringify(updatedUsers));
+    
+    // Update current user
+    const updatedUser = { ...user, inventory: updatedUsers.find(u => u.id === user.id).inventory };
+    setUser(updatedUser);
+    localStorage.setItem('user', JSON.stringify(updatedUser));
+  };
+
+  const removeSkin = (market_hash_name) => {
+    if (!user) return;
+    
+    const users = JSON.parse(localStorage.getItem('users') || '[]');
+    const updatedUsers = users.map(u => {
+      if (u.id === user.id) {
+        const inventory = (u.inventory || []).filter(s => s.market_hash_name !== market_hash_name);
+        return { ...u, inventory };
+      }
+      return u;
+    });
+    
+    localStorage.setItem('users', JSON.stringify(updatedUsers));
+    
+    // Update current user
+    const updatedUser = { ...user, inventory: updatedUsers.find(u => u.id === user.id).inventory };
+    setUser(updatedUser);
+    localStorage.setItem('user', JSON.stringify(updatedUser));
+  };
+
+  const getUserSkins = () => {
+    return user?.inventory || [];
+  };
+
   const isAuthenticated = !!user;
 
   return (
-    <AuthContext.Provider value={{ user, login, register, logout, isAuthenticated, loading }}>
+    <AuthContext.Provider value={{ user, login, register, logout, isAuthenticated, loading, addSkin, removeSkin, getUserSkins }}>
       {children}
     </AuthContext.Provider>
   );
