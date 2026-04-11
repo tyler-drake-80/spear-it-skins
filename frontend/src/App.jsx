@@ -21,6 +21,7 @@ function App() {
         <Route path="/profile" element={<ProfilePage />} />
         <Route path="/category/:type/:itemId" element={<GunPage />} />
         <Route path="/category/:type" element={<CategoryPage />} />
+        <Route path="/category/:type/:itemId/:gunId" element={<SkinPage />} />
       </Routes>
     </AuthProvider>
   );
