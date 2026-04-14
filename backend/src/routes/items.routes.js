@@ -17,6 +17,8 @@ router.get("/items", async (req, res, next) => {
     const st = (req.query.st || "").toString().trim().toLowerCase();
     const minPrice = req.query.minPrice !== undefined ? Number(req.query.minPrice) : null;
     const maxPrice = req.query.maxPrice !== undefined ? Number(req.query.maxPrice) : null;
+    const rawStatus = (req.query.status || "active").toString().trim().toLowerCase();
+    const status = ["active", "all", "stale"].includes(rawStatus) ? rawStatus : "active";
 
     const where = [];
     const values = [];
@@ -53,12 +55,29 @@ router.get("/items", async (req, res, next) => {
       values.push(maxPrice);
     }
 
+    if (status === "active") {
+      where.push(`latest_snapshot.item_id IS NOT NULL`);
+    } else if (status === "stale") {
+      where.push(`latest_snapshot.item_id IS NULL`);
+    }
+
     const whereClause = where.length ? `WHERE ${where.join(" AND ")}` : "";
+
+    const baseFrom = `
+      FROM items i
+      JOIN item_latest l ON l.item_id = i.id
+      CROSS JOIN (
+        SELECT MAX(as_of) AS latest_as_of
+        FROM item_price_history
+      ) snapshot
+      LEFT JOIN item_price_history latest_snapshot
+        ON latest_snapshot.item_id = i.id
+       AND latest_snapshot.as_of = snapshot.latest_as_of
+    `;
 
     const countQuery = `
       SELECT COUNT(*)::int AS total
-      FROM items i
-      JOIN item_latest l ON l.item_id = i.id
+      ${baseFrom}
       ${whereClause}
     `;
 
@@ -71,9 +90,9 @@ router.get("/items", async (req, res, next) => {
         l.min_price,
         l.suggested_price,
         l.quantity,
-        l.as_of
-      FROM items i
-      JOIN item_latest l ON l.item_id = i.id
+        l.as_of,
+        (latest_snapshot.item_id IS NOT NULL) AS is_active
+      ${baseFrom}
       ${whereClause}
       ORDER BY l.min_price ASC NULLS LAST
       LIMIT $${param++}
@@ -87,21 +106,23 @@ router.get("/items", async (req, res, next) => {
 
     const latestResult = await pool.query(`
       SELECT MAX(as_of) AS last_updated
-      FROM item_latest
+      FROM item_price_history
     `);
 
     const items = dataResult.rows.map((row) => ({
-    market_hash_name: row.market_hash_name,
-    min_price: row.min_price === null ? null : Number(row.min_price),
-    suggested_price: row.suggested_price === null ? null : Number(row.suggested_price),
-    quantity: row.quantity,
-    image_url: row.image_url,
-    weapon: row.weapon,
-    exterior: row.exterior,
-    st:
-      typeof row.market_hash_name === "string" &&
-      row.market_hash_name.startsWith("StatTrak™"),
-  }));
+      market_hash_name: row.market_hash_name,
+      min_price: row.min_price === null ? null : Number(row.min_price),
+      suggested_price: row.suggested_price === null ? null : Number(row.suggested_price),
+      quantity: row.quantity,
+      image_url: row.image_url,
+      weapon: row.weapon,
+      exterior: row.exterior,
+      as_of: row.as_of,
+      is_active: row.is_active,
+      st:
+        typeof row.market_hash_name === "string" &&
+        row.market_hash_name.startsWith("StatTrak™"),
+    }));
 
     res.json({
       total: countResult.rows[0].total,
@@ -113,6 +134,7 @@ router.get("/items", async (req, res, next) => {
       st: st || null,
       minPrice,
       maxPrice,
+      status,
       sort: "price_asc",
       items,
       lastUpdated: latestResult.rows[0].last_updated,
