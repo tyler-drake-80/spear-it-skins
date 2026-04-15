@@ -7,6 +7,7 @@ const morgan = require("morgan");
 
 const healthRoutes = require("./routes/health.routes");
 const itemsRoutes = require("./routes/items.routes");
+const glovesRoutes = require("./routes/gloves.routes");
 
 function createApp() {
     const app = express();
@@ -21,6 +22,7 @@ function createApp() {
 
     app.use("/api/v1", healthRoutes);
     app.use("/api/v1", itemsRoutes);
+    app.use("/api/v1", glovesRoutes);
 
     //basic error handler
     //eslint-disable-next-line no-unused-vars
