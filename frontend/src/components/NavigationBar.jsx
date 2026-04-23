@@ -13,10 +13,7 @@ function NavBar() {
     navigate('/');
   };
 
-  const home = []
-  const gloves=[]
-  ;
-        
+  const home = [];
 
   return (
     <nav style={styles.nav}>
@@ -58,9 +55,9 @@ function NavBar() {
         />
 
         <DropDown1
-          title = "Gloves"
+          title="Gloves"
           categoryUrl="/category/gloves"
-          items = {gloves}
+          items={weapons["gloves"]}
         />
 
         

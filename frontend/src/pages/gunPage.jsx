@@ -1,73 +1,55 @@
-import { useParams } from "react-router-dom"; //lets you read the dynamic part of the url
-import { pistolSkins } from "../data/pistolSkins";
-
+import { useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
 import CategoryPicture from "../components/CategoryPicture";
-import { Link } from "react-router-dom";
-
-import {weapons} from "../data/weapons"; 
-import {smgSkins} from "../data/smgSkins";
-import {rifleSkins} from "../data/rilfeSkins";
-import {knifeSkins} from "../data/knifeSkins"
-import {heavySkins} from "../data/heavySkins"
-
+import { weapons } from "../data/weapons";
 
 function GunPage() {
-  const { type, itemId } = useParams();    // for /category/pistols in url , type = gun class, itemId = specific gun  
-
-  const skinData = {
-    pistols: pistolSkins,
-    smgs: smgSkins,
-    rifles: rifleSkins,
-    knives: knifeSkins,
-    heavy: heavySkins,
-  };
-
-  const gunList = skinData[type];
-  const gunName = gunList?.[itemId];
-
-  if (!gunName) {
-    return <h2>Gun not found</h2>;
-  }
-
-  const skinList = Object.values(gunName);
+  const { type, itemId } = useParams();
+  const [skins, setSkins] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   const weaponData = weapons[type]?.[itemId];
-  const description = weaponData?.description;
-  const weaponsList = Object.values( weapons[type] || {});
-  
-   return (
+  const weaponName = weaponData?.name || itemId;
+
+  useEffect(() => {
+    if (!weaponName) return;
+    setLoading(true);
+    fetch(`http://localhost:4000/api/v1/skins?weapon=${encodeURIComponent(weaponName)}`)
+      .then((res) => res.ok ? res.json() : { skins: [] })
+      .then((data) => {
+        setSkins(data.skins || []);
+        setLoading(false);
+      })
+      .catch(() => setLoading(false));
+  }, [weaponName]);
+
+  if (loading) return <p style={{ padding: "24px" }}>Loading skins...</p>;
+
+  return (
     <>
-      <h1>Page for {itemId.toUpperCase() } skins </h1>
-      <h3>Category: {type}: {description}</h3>
-      <h3>need to fill in with skins of each respective gun </h3>
-      
-      <div style = {styles.grid}>
-        {skinList.map((data) => (
-        <CategoryPicture
-          img = {data.img || "/stockGun.png"} 
-          title = {data.name}
-          link = {  data?.url_add_on
-            ? `/category/${type}/${itemId}/${data.url_add_on}`
-            : "/"  }
-        />
-        ))}  
+      <h1>Page for {itemId.toUpperCase()} skins</h1>
+      <h3>Category: {type} — {weaponData?.description}</h3>
+
+      <div style={styles.grid}>
+        {skins.map((skin) => (
+          <CategoryPicture
+            key={skin.name}
+            img={skin.image_url || "/stockGun.png"}
+            title={skin.name}
+            link={`/category/${type}/${itemId}/${skin.name.replace(/ /g, "-")}`}
+          />
+        ))}
       </div>
     </>
-
-    
-
   );
 }
-
-
-
 
 const styles = {
   grid: {
     display: "grid",
     gridTemplateColumns: "auto auto auto",
-    padding: "10px"
+    padding: "10px",
+  },
+};
 
-  }
-}
 export default GunPage;

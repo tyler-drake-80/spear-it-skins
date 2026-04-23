@@ -46,7 +46,8 @@ export const pistolSkins = {
     "Pole Position": {
       "name": "Pole Position",
       "img": "",
-      "description": "intresting color patter and name? "
+      "description": "intresting color patter and name? ",
+      "url_add_on": "Pole-Position"
     },
     
     "Tigris": {
@@ -95,139 +96,162 @@ export const pistolSkins = {
     "Emerald": {
       "name": "Emerald",
       "img": "",
-      "description": "bright colors "
+      "description": "bright colors ",
+      "url_add_on": "Emerald"
     },
-    
+
     "Polymer": {
       "name": "Polymer",
       "img": "",
-      "description": ""
+      "description": "",
+      "url_add_on": "Polymer"
     },
-    
+
     "Hexane": {
       "name": "Hexane",
       "img": "",
-      "description": ""
+      "description": "",
+      "url_add_on": "Hexane"
     },
-    
+
     "Imprint": {
       "name": "Imprint",
       "img": "",
-      "description": ""
+      "description": "",
+      "url_add_on": "Imprint"
     },
-    
+
     "Emerald Quartz": {
       "name": "Emerald Quartz",
       "img": "",
-      "description": ""
+      "description": "",
+      "url_add_on": "Emerald-Quartz"
     },
-    
+
     "Tread Plate": {
       "name": "Tread Plate",
       "img": "",
-      "description": ""
+      "description": "",
+      "url_add_on": "Tread-Plate"
     },
-    
+
     "Framework": {
       "name": "Framework",
       "img": "",
-      "description": ""
+      "description": "",
+      "url_add_on": "Framework"
     },
-    
+
     "Vendetta": {
       "name": "Vendetta",
       "img": "",
-      "description": ""
+      "description": "",
+      "url_add_on": "Vendetta"
     },
-    
+
     "Twist": {
       "name": "Twist",
       "img": "",
-      "description": ""
+      "description": "",
+      "url_add_on": "Twist"
     },
-    
+
     "Nitro": {
       "name": "Nitro",
       "img": "",
-      "description": ""
+      "description": "",
+      "url_add_on": "Nitro"
     },
-    
+
     "Poison Dart": {
       "name": "Poison Dart",
       "img": "",
-      "description": ""
+      "description": "",
+      "url_add_on": "Poison-Dart"
     },
-    
+
     "The Fuschia Is Now": {
       "name": "The Fuschia Is Now",
       "img": "",
-      "description": "Great skin name "
+      "description": "Great skin name ",
+      "url_add_on": "The-Fuschia-Is-Now"
     },
-    
+
     "Tuxedo": {
       "name": "Tuxedo",
       "img": "",
-      "description": "Elegance to take out your enemies"
+      "description": "Elegance to take out your enemies",
+      "url_add_on": "Tuxedo"
     },
-    
+
     "Army Sheen": {
       "name": "Army Sheen",
       "img": "",
-      "description": ""
+      "description": "",
+      "url_add_on": "Army-Sheen"
     },
-    
+
     "Distressed": {
       "name": "Distressed",
       "img": "",
-      "description": ""
+      "description": "",
+      "url_add_on": "Distressed"
     },
-    
+
     "Jungle Dashed": {
       "name": "Jungle Dashed",
       "img": "",
-      "description": ""
+      "description": "",
+      "url_add_on": "Jungle-Dashed"
     },
-    
+
     "Indigo": {
       "name": "Indigo",
       "img": "",
-      "description": ""
+      "description": "",
+      "url_add_on": "Indigo"
     },
-    
+
     "Green Plaid": {
       "name": "Green Plaid",
       "img": "",
-      "description": ""
+      "description": "",
+      "url_add_on": "Green-Plaid"
     },
-    
+
     "Pink Pearl": {
       "name": "Pink Pearl",
       "img": "",
-      "description": ""
+      "description": "",
+      "url_add_on": "Pink-Pearl"
     },
-    
+
     "Silver": {
       "name": "Silver",
       "img": "",
-      "description": ""
+      "description": "",
+      "url_add_on": "Silver"
     },
-    
+
     "Midnight Palm": {
       "name": "Midnight Palm",
       "img": "",
-      "description": ""
+      "description": "",
+      "url_add_on": "Midnight-Palm"
     },
-    
+
     "Honey Paisley":  {
       "name": "Honey Paisley",
       "img": "",
-      "description": ""
+      "description": "",
+      "url_add_on": "Honey-Paisley"
     },
-    
+
     "Chalice": {
       "name": "Chalice",
       "img": "",
-      "description": ""
+      "description": "",
+      "url_add_on": "Chalice"
     }
   },
 

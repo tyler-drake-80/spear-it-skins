@@ -9,7 +9,7 @@ const router = express.Router();
 router.get("/items", async (req, res, next) => {
   try {
     const q = (req.query.q || "").toString().trim();
-    const limit = Math.max(1, Math.min(100, parseInt(req.query.limit, 10) || 20));
+    const limit = Math.max(1, Math.min(500, parseInt(req.query.limit, 10) || 20));
     const offset = Math.max(0, parseInt(req.query.offset, 10) || 0);
 
     const weapon = (req.query.weapon || "").toString().trim();
@@ -139,6 +139,38 @@ router.get("/items", async (req, res, next) => {
       items,
       lastUpdated: latestResult.rows[0].last_updated,
     });
+  } catch (err) {
+    next(err);
+  }
+});
+
+// GET /api/v1/skins?weapon=Desert Eagle
+// Returns distinct skin names + one image per skin for a given weapon
+router.get("/skins", async (req, res, next) => {
+  try {
+    const weapon = (req.query.weapon || "").toString().trim();
+    if (!weapon) {
+      return res.status(400).json({ error: "weapon query param required" });
+    }
+
+    const { rows } = await pool.query(
+      `SELECT
+        split_part(
+          regexp_replace(market_hash_name, ' \\([^)]+\\)$', ''),
+          ' | ',
+          2
+        ) AS name,
+        MAX(image_url) AS image_url
+      FROM items
+      WHERE weapon = $1
+        AND market_hash_name NOT LIKE 'StatTrak™%'
+        AND market_hash_name LIKE '%|%'
+      GROUP BY name
+      ORDER BY name`,
+      [weapon]
+    );
+
+    res.json({ weapon, skins: rows });
   } catch (err) {
     next(err);
   }

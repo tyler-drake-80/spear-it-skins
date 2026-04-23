@@ -8,6 +8,7 @@ import GunPage from "./pages/gunPage.jsx";
 import LoginPage from "./pages/loginPage.jsx";
 import RegisterPage from "./pages/registerPage.jsx";
 import ProfilePage from "./pages/profilePage.jsx";
+import SkinPage from "./pages/skinPage.jsx";
 import { AuthProvider } from "./context/AuthContext.jsx";
 
 function App() {
