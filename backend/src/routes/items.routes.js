@@ -20,6 +20,14 @@ router.get("/items", async (req, res, next) => {
     const rawStatus = (req.query.status || "active").toString().trim().toLowerCase();
     const status = ["active", "all", "stale"].includes(rawStatus) ? rawStatus : "active";
 
+    const sort = (req.query.sort || "").toLowerCase();
+    const filter = (req.query.filter || "").toLowerCase();
+
+    let order = "ASC";
+    if (sort === "desc" || filter === "descending") {
+    order = "DESC";
+    }
+
     const where = [];
     const values = [];
     let param = 1;
@@ -94,7 +102,7 @@ router.get("/items", async (req, res, next) => {
         (latest_snapshot.item_id IS NOT NULL) AS is_active
       ${baseFrom}
       ${whereClause}
-      ORDER BY l.min_price ASC NULLS LAST
+      ORDER BY l.min_price ${order} NULLS LAST
       LIMIT $${param++}
       OFFSET $${param++}
     `;
@@ -135,7 +143,8 @@ router.get("/items", async (req, res, next) => {
       minPrice,
       maxPrice,
       status,
-      sort: "price_asc",
+      sort: `price_${order.toLowerCase()}`,
+      filter: filter || null,
       items,
       lastUpdated: latestResult.rows[0].last_updated,
     });

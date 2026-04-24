@@ -15,6 +15,14 @@ router.get("/gloves", async (req, res, next) => {
     const minPrice = req.query.minPrice !== undefined ? Number(req.query.minPrice) : null;
     const maxPrice = req.query.maxPrice !== undefined ? Number(req.query.maxPrice) : null;
 
+    const sort = (req.query.sort || "").toLowerCase();
+    const filter = (req.query.filter || "").toLowerCase();
+    let order = "ASC";
+    if (sort === "desc" || filter === "descending") {
+    order = "DESC";
+    }
+
+
     const where = [];
     const values = [];
     let param = 1;
@@ -62,7 +70,7 @@ router.get("/gloves", async (req, res, next) => {
       FROM items i
       JOIN item_latest l ON l.item_id = i.id
       ${whereClause}
-      ORDER BY l.min_price ASC NULLS LAST
+      ORDER BY l.min_price ${order} NULLS LAST
       LIMIT $${param++}
       OFFSET $${param++}
     `;
@@ -94,7 +102,8 @@ router.get("/gloves", async (req, res, next) => {
       exterior: exterior || null,
       minPrice,
       maxPrice,
-      sort: "price_asc",
+      sort: `price_${order.toLowerCase()}`,
+      filter: filter || null,
       items,
       lastUpdated: latestResult.rows[0].last_updated,
     });
