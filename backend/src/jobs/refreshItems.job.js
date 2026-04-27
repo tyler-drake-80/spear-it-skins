@@ -1,4 +1,5 @@
 const { fetchItemsFromSkinport } = require("../services/skinport.service");
+const { checkPriceAlerts } = require("../services/alerts.service");
 const itemsCache = require("../cache/itemsCache");
 const {
   pool,
@@ -60,6 +61,8 @@ async function refreshItems() {
     }
 
     itemsCache.setItems(items);
+
+    await checkPriceAlerts();
 
     console.log(
       `[refreshItems] OK: wrote ${items.length} unique items to Postgres and cached them @ ${itemsCache.getLastUpdated().toISOString()}`
