@@ -3,8 +3,43 @@
 //Supports search + returns 'pages' to avoid sending full dataset.
 const express = require("express");
 const pool = require("../db/pool");
+const {
+  getDisplayPriceSql,
+  getPriceDisplay,
+} = require("../services/priceDisplay.service");
 
 const router = express.Router();
+const DISPLAY_PRICE_SQL = getDisplayPriceSql("l");
+
+const SORT_COLUMNS = {
+  price: DISPLAY_PRICE_SQL,
+  name: "i.market_hash_name",
+  quantity: "l.quantity",
+  updated: "l.as_of",
+};
+
+function parseSortParams(query) {
+  const rawSort = (query.sort || "price").toString().trim().toLowerCase();
+  const rawOrder = (query.order || "").toString().trim().toLowerCase();
+
+  if (rawSort === "price_asc") {
+    return { sort: "price", order: "asc", orderBy: `${DISPLAY_PRICE_SQL} ASC NULLS LAST` };
+  }
+
+  if (rawSort === "price_desc") {
+    return { sort: "price", order: "desc", orderBy: `${DISPLAY_PRICE_SQL} DESC NULLS LAST` };
+  }
+
+  const sort = SORT_COLUMNS[rawSort] ? rawSort : "price";
+  const order = rawOrder === "desc" ? "desc" : "asc";
+  const direction = order.toUpperCase();
+
+  return {
+    sort,
+    order,
+    orderBy: `${SORT_COLUMNS[sort]} ${direction} NULLS LAST`,
+  };
+}
 
 router.get("/items", async (req, res, next) => {
   try {
@@ -19,6 +54,7 @@ router.get("/items", async (req, res, next) => {
     const maxPrice = req.query.maxPrice !== undefined ? Number(req.query.maxPrice) : null;
     const rawStatus = (req.query.status || "active").toString().trim().toLowerCase();
     const status = ["active", "all", "stale"].includes(rawStatus) ? rawStatus : "active";
+    const sortParams = parseSortParams(req.query);
 
     const sort = (req.query.sort || "").toLowerCase();
     const filter = (req.query.filter || "").toLowerCase();
@@ -32,9 +68,10 @@ router.get("/items", async (req, res, next) => {
     const values = [];
     let param = 1;
 
-    if (q) {
+    const searchTokens = q.split(/\s+/).filter(Boolean);
+    for (const token of searchTokens) {
       where.push(`i.market_hash_name ILIKE $${param++}`);
-      values.push(`%${q}%`);
+      values.push(`%${token}%`);
     }
 
     if (weapon) {
@@ -102,7 +139,7 @@ router.get("/items", async (req, res, next) => {
         (latest_snapshot.item_id IS NOT NULL) AS is_active
       ${baseFrom}
       ${whereClause}
-      ORDER BY l.min_price ${order} NULLS LAST
+      ORDER BY ${sortParams.orderBy}
       LIMIT $${param++}
       OFFSET $${param++}
     `;
@@ -117,20 +154,34 @@ router.get("/items", async (req, res, next) => {
       FROM item_price_history
     `);
 
-    const items = dataResult.rows.map((row) => ({
-      market_hash_name: row.market_hash_name,
-      min_price: row.min_price === null ? null : Number(row.min_price),
-      suggested_price: row.suggested_price === null ? null : Number(row.suggested_price),
-      quantity: row.quantity,
-      image_url: row.image_url,
-      weapon: row.weapon,
-      exterior: row.exterior,
-      as_of: row.as_of,
-      is_active: row.is_active,
-      st:
-        typeof row.market_hash_name === "string" &&
-        row.market_hash_name.startsWith("StatTrak™"),
-    }));
+    const items = dataResult.rows.map((row) => {
+      const minPrice = row.min_price === null ? null : Number(row.min_price);
+      const suggestedPrice =
+        row.suggested_price === null ? null : Number(row.suggested_price);
+      const priceDisplay = getPriceDisplay({
+        min_price: minPrice,
+        suggested_price: suggestedPrice,
+        quantity: row.quantity,
+      });
+
+      return {
+        market_hash_name: row.market_hash_name,
+        min_price: minPrice,
+        suggested_price: suggestedPrice,
+        display_price: priceDisplay.display_price,
+        price_status: priceDisplay.price_status,
+        price_warning: priceDisplay.price_warning,
+        quantity: row.quantity,
+        image_url: row.image_url,
+        weapon: row.weapon,
+        exterior: row.exterior,
+        as_of: row.as_of,
+        is_active: row.is_active,
+        st:
+          typeof row.market_hash_name === "string" &&
+          row.market_hash_name.startsWith("StatTrak™"),
+      };
+    });
 
     res.json({
       total: countResult.rows[0].total,
@@ -143,8 +194,9 @@ router.get("/items", async (req, res, next) => {
       minPrice,
       maxPrice,
       status,
-      sort: `price_${order.toLowerCase()}`,
-      filter: filter || null,
+      sort: sortParams.sort,
+      order: sortParams.order,
+      priceBasis: sortParams.sort === "price" ? "display_price" : null,
       items,
       lastUpdated: latestResult.rows[0].last_updated,
     });

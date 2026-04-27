@@ -19,7 +19,7 @@ async function upsertItemMetadata(client, item) {
       rarity_rank = EXCLUDED.rarity_rank,
       weapon = EXCLUDED.weapon,
       exterior = EXCLUDED.exterior,
-      image_url = EXCLUDED.image_url
+      image_url = COALESCE(EXCLUDED.image_url, items.image_url)
     RETURNING id, market_hash_name;
   `;
 
