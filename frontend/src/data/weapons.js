@@ -36,8 +36,8 @@ pistols : {
     description: "description filler 2"
   },
   
-  "R8-Revolver":  { 
-    name: "R8-Revolver", url: "/category/pistols/R8-Revolver", img: "/pistolsCategory/imgi_15_R8_Revolver.png" , 
+  "R8-Revolver":  {
+    name: "R8 Revolver", url: "/category/pistols/R8-Revolver", img: "/pistolsCategory/imgi_15_R8_Revolver.png" , 
     description: "Old school pistol that does good damage"},
   
   "Tec-9":  { 
@@ -57,8 +57,8 @@ pistols : {
   },
 
  smgs : {
-  "Mac-10": { 
-    name: "Mac-10", url: "/category/smgs/Mac-10", 
+  "Mac-10": {
+    name: "MAC-10", url: "/category/smgs/Mac-10",
     img: "/smgImages/MAC-10.png",
     description: "Has excellent fire rate to get the job done" },
   
@@ -105,8 +105,8 @@ pistols : {
     img: "/rifleImages/FAMAS.png",
     description: "" },
   
-  "Galil-AR":  { 
-    name: "Galil-AR", url: "/category/rifles/Galil-AR", 
+  "Galil-AR":  {
+    name: "Galil AR", url: "/category/rifles/Galil-AR", 
     img: "/rifleImages/Galil_AR.png",
     description: "" },
   
@@ -120,68 +120,112 @@ pistols : {
     img: "/rifleImages/M4A4.png",
     description: "" },
   
-  "SG-553":  { 
-    name: "SG-553", url: "/category/rifles/SG-553",
-    
+  "SG-553":  {
+    name: "SG 553", url: "/category/rifles/SG-553",
+    img: "/rifleImages/SG-553.png",
     description: ""},
-  
-  "AWP":  { 
-    name: "AWP", url: "/category/rifles/AWP", 
+
+  "AWP":  {
+    name: "AWP", url: "/category/rifles/AWP",
     img: "/rifleImages/AWP.png",
     description: "" },
-  
-  "G3SG1":  { 
-    name: "G3SG1", url: "/category/rifles/G3SG1", 
-    
+
+  "G3SG1":  {
+    name: "G3SG1", url: "/category/rifles/G3SG1",
+    img: "/rifleImages/G3SG1.png",
     description: "" },
-  
-  "SCAR-20":  { 
-    name: "SCAR-20", url: "/category/rifles/SCAR-20", 
-    
+
+  "SCAR-20":  {
+    name: "SCAR-20", url: "/category/rifles/SCAR-20",
+    img: "/rifleImages/SCAR-20.png",
     description: "" },
-  
-  "SSG-08":  { 
-    name: "SSG-08", url: "/category/rifles/SSG-08", 
-    
+
+  "SSG-08":  {
+    name: "SSG 08", url: "/category/rifles/SSG-08",
+    img: "/rifleImages/SSG_08.png",
     description: "" }
   },
 
  knives : {
-  "Bayonet": { 
-    name: "Bayonet", url: "/category/knives/Bayonet", 
-    description: "" },
-  
-  "Bowie-Knife":  { 
-    name: "Bowie-Knife", url: "/category/knives/Bowie-Knife", 
-    description: "" },
-  
-  "Butterfly-Knife":  { 
-    name: "Butterfly-Knife", url: "/category/knives/Butterfly-Knife", 
-    description: "" },
-  
-  "Classic-Knife":  { 
-    name: "Classic-Knife", url: "/category/knives/Classic-Knife", 
-    description: "" },
-  
-  "Falchion-Knife":  { 
-    name: "Falchion-Knife", url: "/category/knives/Falchion-Knife", 
-    description: "" },
-  
-  "Flip-Knife":  { 
-    name: "Flip-Knife", url: "/category/knives/Flip-Knife", 
-    description: "" },
-  
-  "Gut-Knife":  { 
-    name: "Gut-Knife", url: "/category/knives/Gut-Knife", 
-    description: "" },
-  
-  "Huntsman-Knife":  { 
-    name: "Huntsman-Knife", url: "/category/knives/Huntsman-Knife", 
-    description: "" },
-  
-  "Karambit":  { 
-    name: "Karambit", url: "/category/knives/Karambit", 
-    description: "" }
+  "Bayonet": {
+    name: "★ Bayonet", url: "/category/knives/Bayonet",
+    img: "/Knifeimages/Bayonet.png", description: "" },
+
+  "Bowie-Knife": {
+    name: "★ Bowie Knife", url: "/category/knives/Bowie-Knife",
+    img: "/Knifeimages/Bowie Knife.png", description: "" },
+
+  "Butterfly-Knife": {
+    name: "★ Butterfly Knife", url: "/category/knives/Butterfly-Knife",
+    img: "/Knifeimages/Butterfly Knife.png", description: "" },
+
+  "Classic-Knife": {
+    name: "★ Classic Knife", url: "/category/knives/Classic-Knife",
+    img: "/Knifeimages/Classic Knife.png", description: "" },
+
+  "Falchion-Knife": {
+    name: "★ Falchion Knife", url: "/category/knives/Falchion-Knife",
+    img: "/Knifeimages/Falchon Knife.png", description: "" },
+
+  "Flip-Knife": {
+    name: "★ Flip Knife", url: "/category/knives/Flip-Knife",
+    img: "/Knifeimages/Flip Knife.png", description: "" },
+
+  "Gut-Knife": {
+    name: "★ Gut Knife", url: "/category/knives/Gut-Knife",
+    img: "/Knifeimages/Gut Knife.png", description: "" },
+
+  "Huntsman-Knife": {
+    name: "★ Huntsman Knife", url: "/category/knives/Huntsman-Knife",
+    img: "/Knifeimages/Huntsman Knife.png", description: "" },
+
+  "Karambit": {
+    name: "★ Karambit", url: "/category/knives/Karambit",
+    img: "/Knifeimages/Karambit.png", description: "" },
+
+  "Kukri-Knife": {
+    name: "★ Kukri Knife", url: "/category/knives/Kukri-Knife",
+    img: "/Knifeimages/Kukri Knife.png", description: "" },
+
+  "M9-Bayonet": {
+    name: "★ M9 Bayonet", url: "/category/knives/M9-Bayonet",
+    img: "/Knifeimages/M9 Bayonet.png", description: "" },
+
+  "Navaja-Knife": {
+    name: "★ Navaja Knife", url: "/category/knives/Navaja-Knife",
+    img: "/Knifeimages/Navaja Knife.png", description: "" },
+
+  "Nomad-Knife": {
+    name: "★ Nomad Knife", url: "/category/knives/Nomad-Knife",
+    img: "/Knifeimages/Nomad Knife.png", description: "" },
+
+  "Paracord-Knife": {
+    name: "★ Paracord Knife", url: "/category/knives/Paracord-Knife",
+    img: "/Knifeimages/Paracord Knife.png", description: "" },
+
+  "Shadow-Daggers": {
+    name: "★ Shadow Daggers", url: "/category/knives/Shadow-Daggers",
+    img: "/Knifeimages/Shadow Daggers.png", description: "" },
+
+  "Skeleton-Knife": {
+    name: "★ Skeleton Knife", url: "/category/knives/Skeleton-Knife",
+    img: "/Knifeimages/Skeleton Knife.png", description: "" },
+
+  "Stiletto-Knife": {
+    name: "★ Stiletto Knife", url: "/category/knives/Stiletto-Knife",
+    img: "/Knifeimages/Stiletto Knife.png", description: "" },
+
+  "Survival-Knife": {
+    name: "★ Survival Knife", url: "/category/knives/Survival-Knife",
+    img: "/Knifeimages/Survival Knife.png", description: "" },
+
+  "Talon-Knife": {
+    name: "★ Talon Knife", url: "/category/knives/Talon-Knife",
+    img: "/Knifeimages/Talon Knife.png", description: "" },
+
+  "Ursus-Knife": {
+    name: "★ Ursus Knife", url: "/category/knives/Ursus-Knife",
+    img: "/Knifeimages/Ursus Knife.png", description: "" },
   },
 
  heavy : {
@@ -215,8 +259,38 @@ pistols : {
   
   },
  gloves: {
+  "Bloodhound-Gloves": {
+    name: "★ Bloodhound Gloves", url: "/category/gloves/Bloodhound-Gloves",
+    img: "/Gloves/Bloodhound Gloves.png", description: "" },
 
- },
+  "Broken-Fang-Gloves": {
+    name: "★ Broken Fang Gloves", url: "/category/gloves/Broken-Fang-Gloves",
+    img: "/Gloves/Broken Fang Gloves.png", description: "" },
+
+  "Driver-Gloves": {
+    name: "★ Driver Gloves", url: "/category/gloves/Driver-Gloves",
+    img: "/Gloves/Driver Gloves.png", description: "" },
+
+  "Hand-Wraps": {
+    name: "★ Hand Wraps", url: "/category/gloves/Hand-Wraps",
+    img: "/Gloves/Hand Wraps.png", description: "" },
+
+  "Hydra-Gloves": {
+    name: "★ Hydra Gloves", url: "/category/gloves/Hydra-Gloves",
+    img: "/Gloves/Hydra Gloves.png", description: "" },
+
+  "Moto-Gloves": {
+    name: "★ Moto Gloves", url: "/category/gloves/Moto-Gloves",
+    img: "/Gloves/Moto Gloves.png", description: "" },
+
+  "Specialist-Gloves": {
+    name: "★ Specialist Gloves", url: "/category/gloves/Specialist-Gloves",
+    img: "/Gloves/Specialist Gloves.png", description: "" },
+
+  "Sport-Gloves": {
+    name: "★ Sport Gloves", url: "/category/gloves/Sport-Gloves",
+    img: "/Gloves/Sport Gloves.png", description: "" },
+  },
 
  
 

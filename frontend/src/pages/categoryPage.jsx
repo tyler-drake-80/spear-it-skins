@@ -59,8 +59,13 @@ const categoryInfo = {
   knives: {
     title: "Knives",
     description: "great for close combat"
-  }
-  
+  },
+
+  gloves: {
+    title: "Gloves",
+    description: "Cosmetic gloves for your hands"
+  },
+
 };
 
 const styles = {
