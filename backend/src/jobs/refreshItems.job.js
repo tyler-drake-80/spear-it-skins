@@ -2,9 +2,10 @@ const { fetchItemsFromSkinport } = require("../services/skinport.service");
 const itemsCache = require("../cache/itemsCache");
 const {
   pool,
-  upsertItemMetadata,
-  upsertItemLatest,
-  insertItemHistory,
+  bulkUpsertItemMetadata,
+  getItemIdsByMarketHashNames,
+  bulkUpsertItemLatest,
+  bulkInsertItemHistory,
 } = require("../db/items.repository");
 
 let refreshInProgress = false;
@@ -17,6 +18,74 @@ function dedupeByMarketHashName(items) {
   return [...map.values()];
 }
 
+function chunkArray(array, size) {
+  const chunks = [];
+  for (let i = 0; i < array.length; i += size) {
+    chunks.push(array.slice(i, i + size));
+  }
+  return chunks;
+}
+
+async function processChunk(client, chunk, chunkIndex, totalChunks) {
+  await client.query("BEGIN");
+  console.log(
+    `[refreshItems] chunk ${chunkIndex + 1}/${totalChunks}: transaction started (${chunk.length} items)`
+  );
+
+  try {
+    await bulkUpsertItemMetadata(client, chunk);
+    console.log(
+      `[refreshItems] chunk ${chunkIndex + 1}/${totalChunks}: metadata upserted`
+    );
+
+    const idMap = await getItemIdsByMarketHashNames(
+      client,
+      chunk.map((item) => item.market_hash_name)
+    );
+
+    const rows = chunk.map((item) => {
+      const itemId = idMap.get(item.market_hash_name);
+
+      if (!itemId) {
+        throw new Error(
+          `Missing item_id for market_hash_name: ${item.market_hash_name}`
+        );
+      }
+
+      return {
+        item_id: itemId,
+        as_of: item.as_of,
+        min_price: item.min_price,
+        suggested_price: item.suggested_price,
+        quantity: item.quantity,
+        raw: item.raw ?? item,
+      };
+    });
+
+    await bulkUpsertItemLatest(client, rows);
+    console.log(
+      `[refreshItems] chunk ${chunkIndex + 1}/${totalChunks}: latest upserted`
+    );
+
+    await bulkInsertItemHistory(client, rows);
+    console.log(
+      `[refreshItems] chunk ${chunkIndex + 1}/${totalChunks}: history inserted`
+    );
+
+    await client.query("COMMIT");
+    console.log(
+      `[refreshItems] chunk ${chunkIndex + 1}/${totalChunks}: transaction committed`
+    );
+  } catch (err) {
+    await client.query("ROLLBACK");
+    console.error(
+      `[refreshItems] chunk ${chunkIndex + 1}/${totalChunks}: transaction rolled back`,
+      err
+    );
+    throw err;
+  }
+}
+
 async function refreshItems() {
   if (refreshInProgress) {
     console.log("[refreshItems] skipped: refresh already running");
@@ -26,6 +95,8 @@ async function refreshItems() {
   refreshInProgress = true;
   console.log("[refreshItems] started");
 
+  let client;
+
   try {
     console.log("[refreshItems] fetching from Skinport...");
     const fetchedItems = await fetchItemsFromSkinport();
@@ -34,39 +105,32 @@ async function refreshItems() {
     const items = dedupeByMarketHashName(fetchedItems);
     console.log(`[refreshItems] deduped to ${items.length} unique items`);
 
+    const chunks = chunkArray(items, 500);
+    console.log(`[refreshItems] split into ${chunks.length} chunks`);
+
     console.log("[refreshItems] connecting to Postgres...");
-    const client = await pool.connect();
+    client = await pool.connect();
     console.log("[refreshItems] connected to Postgres");
 
-    try {
-      await client.query("BEGIN");
-      console.log("[refreshItems] transaction started");
-
-      for (const item of items) {
-        const itemRow = await upsertItemMetadata(client, item);
-        await upsertItemLatest(client, itemRow.id, item);
-        await insertItemHistory(client, itemRow.id, item);
-      }
-
-      await client.query("COMMIT");
-      console.log("[refreshItems] transaction committed");
-    } catch (err) {
-      await client.query("ROLLBACK");
-      console.error("[refreshItems] transaction rolled back:", err.message);
-      throw err;
-    } finally {
-      client.release();
-      console.log("[refreshItems] Postgres client released");
+    for (let i = 0; i < chunks.length; i++) {
+      await processChunk(client, chunks[i], i, chunks.length);
     }
 
     itemsCache.setItems(items);
 
     console.log(
-      `[refreshItems] OK: wrote ${items.length} unique items to Postgres and cached them @ ${itemsCache.getLastUpdated().toISOString()}`
+      `[refreshItems] OK: wrote ${items.length} unique items to Postgres and cached them @ ${itemsCache
+        .getLastUpdated()
+        .toISOString()}`
     );
   } catch (err) {
-    console.error("[refreshItems] FAILED:", err.message);
+    console.error("[refreshItems] FAILED:", err);
   } finally {
+    if (client) {
+      client.release();
+      console.log("[refreshItems] Postgres client released");
+    }
+
     refreshInProgress = false;
     console.log("[refreshItems] finished");
   }

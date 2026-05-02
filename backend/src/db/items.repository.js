@@ -1,6 +1,16 @@
 const pool = require("./pool");
 
-async function upsertItemMetadata(client, item) {
+async function bulkUpsertItemMetadata(client, items) {
+  const payload = items.map((item) => ({
+    market_hash_name: item.market_hash_name,
+    item_type: item.item_type ?? null,
+    rarity: item.rarity ?? null,
+    rarity_rank: item.rarity_rank ?? null,
+    weapon: item.weapon ?? null,
+    exterior: item.exterior ?? null,
+    image_url: item.image_url ?? null,
+  }));
+
   const query = `
     INSERT INTO items (
       market_hash_name,
@@ -11,7 +21,23 @@ async function upsertItemMetadata(client, item) {
       exterior,
       image_url
     )
-    VALUES ($1, $2, $3, $4, $5, $6, $7)
+    SELECT
+      x.market_hash_name,
+      x.item_type,
+      x.rarity,
+      x.rarity_rank,
+      x.weapon,
+      x.exterior,
+      x.image_url
+    FROM jsonb_to_recordset($1::jsonb) AS x(
+      market_hash_name text,
+      item_type text,
+      rarity text,
+      rarity_rank integer,
+      weapon text,
+      exterior text,
+      image_url text
+    )
     ON CONFLICT (market_hash_name)
     DO UPDATE SET
       item_type = EXCLUDED.item_type,
@@ -19,25 +45,33 @@ async function upsertItemMetadata(client, item) {
       rarity_rank = EXCLUDED.rarity_rank,
       weapon = EXCLUDED.weapon,
       exterior = EXCLUDED.exterior,
-      image_url = COALESCE(EXCLUDED.image_url, items.image_url)
-    RETURNING id, market_hash_name;
+      image_url = COALESCE(EXCLUDED.image_url, items.image_url);
   `;
 
-  const values = [
-    item.market_hash_name,
-    item.item_type,
-    item.rarity,
-    item.rarity_rank,
-    item.weapon,
-    item.exterior,
-    item.image_url,
-  ];
-
-  const result = await client.query(query, values);
-  return result.rows[0];
+  await client.query(query, [JSON.stringify(payload)]);
 }
 
-async function upsertItemLatest(client, itemId, item) {
+async function getItemIdsByMarketHashNames(client, marketHashNames) {
+  const query = `
+    SELECT id, market_hash_name
+    FROM items
+    WHERE market_hash_name = ANY($1::text[]);
+  `;
+
+  const result = await client.query(query, [marketHashNames]);
+  return new Map(result.rows.map((row) => [row.market_hash_name, row.id]));
+}
+
+async function bulkUpsertItemLatest(client, rows) {
+  const payload = rows.map((row) => ({
+    item_id: row.item_id,
+    as_of: row.as_of,
+    min_price: row.min_price ?? null,
+    suggested_price: row.suggested_price ?? null,
+    quantity: row.quantity ?? null,
+    raw: row.raw ?? null,
+  }));
+
   const query = `
     INSERT INTO item_latest (
       item_id,
@@ -48,7 +82,22 @@ async function upsertItemLatest(client, itemId, item) {
       raw,
       updated_at
     )
-    VALUES ($1, $2, $3, $4, $5, $6, NOW())
+    SELECT
+      x.item_id,
+      x.as_of,
+      x.min_price,
+      x.suggested_price,
+      x.quantity,
+      x.raw,
+      NOW()
+    FROM jsonb_to_recordset($1::jsonb) AS x(
+      item_id bigint,
+      as_of timestamptz,
+      min_price numeric,
+      suggested_price numeric,
+      quantity integer,
+      raw jsonb
+    )
     ON CONFLICT (item_id)
     DO UPDATE SET
       as_of = EXCLUDED.as_of,
@@ -59,19 +108,19 @@ async function upsertItemLatest(client, itemId, item) {
       updated_at = NOW();
   `;
 
-  const values = [
-    itemId,
-    item.as_of,
-    item.min_price,
-    item.suggested_price,
-    item.quantity,
-    JSON.stringify(item.raw),
-  ];
-
-  await client.query(query, values);
+  await client.query(query, [JSON.stringify(payload)]);
 }
 
-async function insertItemHistory(client, itemId, item) {
+async function bulkInsertItemHistory(client, rows) {
+  const payload = rows.map((row) => ({
+    item_id: row.item_id,
+    as_of: row.as_of,
+    min_price: row.min_price ?? null,
+    suggested_price: row.suggested_price ?? null,
+    quantity: row.quantity ?? null,
+    raw: row.raw ?? null,
+  }));
+
   const query = `
     INSERT INTO item_price_history (
       item_id,
@@ -81,26 +130,32 @@ async function insertItemHistory(client, itemId, item) {
       quantity,
       raw
     )
-    VALUES ($1, $2, $3, $4, $5, $6)
+    SELECT
+      x.item_id,
+      x.as_of,
+      x.min_price,
+      x.suggested_price,
+      x.quantity,
+      x.raw
+    FROM jsonb_to_recordset($1::jsonb) AS x(
+      item_id bigint,
+      as_of timestamptz,
+      min_price numeric,
+      suggested_price numeric,
+      quantity integer,
+      raw jsonb
+    )
     ON CONFLICT (item_id, as_of)
     DO NOTHING;
   `;
 
-  const values = [
-    itemId,
-    item.as_of,
-    item.min_price,
-    item.suggested_price,
-    item.quantity,
-    JSON.stringify(item.raw),
-  ];
-
-  await client.query(query, values);
+  await client.query(query, [JSON.stringify(payload)]);
 }
 
 module.exports = {
   pool,
-  upsertItemMetadata,
-  upsertItemLatest,
-  insertItemHistory,
+  bulkUpsertItemMetadata,
+  getItemIdsByMarketHashNames,
+  bulkUpsertItemLatest,
+  bulkInsertItemHistory,
 };
