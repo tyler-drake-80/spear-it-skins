@@ -42,12 +42,14 @@ Represents the catalog of tradeable items
 ### 3. Item_price_history
 **Purpose:**
  - Stores historical pricing snapshots over time
- - Enables trend analysis and charting
+ - Keeps short-term raw snapshots for trend analysis and charting
  - Composite PK ensures no duplicate timestamps
 
 **Primary key:** (item_id, as_of)
  
 **Foreign key:** item_id -> items.id (ON DELETE CASCADE)
 
- 
-
+**Retention:**
+ - Raw history cleanup runs after a successful refresh
+ - Default retention is 7 days
+ - Configure with `PRICE_HISTORY_RETENTION_DAYS`

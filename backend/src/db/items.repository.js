@@ -152,10 +152,21 @@ async function bulkInsertItemHistory(client, rows) {
   await client.query(query, [JSON.stringify(payload)]);
 }
 
+async function deleteOldItemPriceHistory(client, retentionDays) {
+  const query = `
+    DELETE FROM item_price_history
+    WHERE as_of < NOW() - ($1::int * INTERVAL '1 day');
+  `;
+
+  const result = await client.query(query, [retentionDays]);
+  return result.rowCount;
+}
+
 module.exports = {
   pool,
   bulkUpsertItemMetadata,
   getItemIdsByMarketHashNames,
   bulkUpsertItemLatest,
   bulkInsertItemHistory,
+  deleteOldItemPriceHistory,
 };

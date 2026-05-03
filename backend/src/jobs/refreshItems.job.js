@@ -6,9 +6,29 @@ const {
   getItemIdsByMarketHashNames,
   bulkUpsertItemLatest,
   bulkInsertItemHistory,
+  deleteOldItemPriceHistory,
 } = require("../db/items.repository");
 
 let refreshInProgress = false;
+
+const DEFAULT_PRICE_HISTORY_RETENTION_DAYS = 7;
+
+function getPriceHistoryRetentionDays() {
+  const rawValue = process.env.PRICE_HISTORY_RETENTION_DAYS;
+  const parsedValue = Number.parseInt(rawValue, 10);
+
+  if (Number.isInteger(parsedValue) && parsedValue > 0) {
+    return parsedValue;
+  }
+
+  if (rawValue !== undefined) {
+    console.warn(
+      `[refreshItems] invalid PRICE_HISTORY_RETENTION_DAYS=${rawValue}; using ${DEFAULT_PRICE_HISTORY_RETENTION_DAYS}`
+    );
+  }
+
+  return DEFAULT_PRICE_HISTORY_RETENTION_DAYS;
+}
 
 function dedupeByMarketHashName(items) {
   const map = new Map();
@@ -123,6 +143,19 @@ async function refreshItems() {
         .getLastUpdated()
         .toISOString()}`
     );
+
+    const retentionDays = getPriceHistoryRetentionDays();
+    try {
+      const deletedRows = await deleteOldItemPriceHistory(client, retentionDays);
+      console.log(
+        `[refreshItems] history cleanup complete: retentionDays=${retentionDays}, deletedRows=${deletedRows}`
+      );
+    } catch (cleanupErr) {
+      console.error(
+        `[refreshItems] history cleanup failed: retentionDays=${retentionDays}`,
+        cleanupErr
+      );
+    }
   } catch (err) {
     console.error("[refreshItems] FAILED:", err);
   } finally {
